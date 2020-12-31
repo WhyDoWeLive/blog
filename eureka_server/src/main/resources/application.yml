@@ -1,0 +1,11 @@
+server:
+  port: 9000    #服务端口
+spring:
+  application:
+    name: eurekaServer    #应用名称，注册eureka时用来标记本服务
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:9003/eureka/    #用于服务注册和发现的对外地址

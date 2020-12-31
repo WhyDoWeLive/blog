@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace指明我们要是实现的是ArticleDao中的接口, <select/update/...>中的id要与ArticleDao中接口名一致 -->
+<mapper namespace="com.example.article.dao.ArticleDao">
+
+    <select id="queryArticle" resultType="com.example.article.entity.Article">
+        SELECT article_id, article_name, score, publish_time, last_edit_time
+        FROM article
+        ORDER BY score
+        DESC
+    </select>
+
+    <select id="queryArticleById" resultType="com.example.article.entity.Article">
+        SELECT article_id, article_name, score, publish_time, last_edit_time
+        FROM article
+        where article_id=#{articleId}
+    </select>
+
+    <insert id="insertArticle" useGeneratedKeys="true" keyProperty="articleId"
+            keyColumn="article_id" parameterType="com.example.article.entity.Article">
+        INSERT INTO
+        article(article_name, score)
+        values
+        (#{articleName},#{score})
+    </insert>
+
+    <update id="updateArticle" parameterType="com.example.article.entity.Article">
+        update article
+        <set>
+            <if test="articleName!=null">article_name=#{articleName},</if>
+            <if test="score!=null">score=#{score},</if>
+            <if test="lastEditTime!=null">last_edit_time=#{lastEditTime}</if>
+        </set>
+        where article_id=#{articleId}
+    </update>
+    <delete id="deleteArticle">
+        DELETE FROM article WHERE article_id=#{articleId}
+    </delete>
+</mapper>

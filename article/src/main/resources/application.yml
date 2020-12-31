@@ -1,0 +1,23 @@
+server:
+  port: 9011    #服务端口
+spring:
+  application:
+    name: article    #应用名称，注册eureka时用来标记本服务
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka/,http://localhost:9003/eureka/   #用于服务注册和发现的对外地址
+
+#配置jdbc，会在DataSourceConfiguration创建cp09线程池数据源的时候用到这些配置
+jdbc:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+  username: root
+  password: 1123@mysql
+
+
+mybatis-config-file: mybatis-config.xml
+mapper_path: /mapper/**.xml
+entity_package: com.example.article.entity

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 官方配置说明：https://mybatis.org/mybatis-3/zh/configuration.html -->
+    <settings>
+        <!-- 可以获取自增主键值，在接口注射器中如@insert(...)时传入正确的自增值并返回，但不会在xml映射器中生效，需要在
+         xml映射器中单独设置: <insert ... useGeneratedKeys>-->
+        <setting name="useGeneratedKeys" value="true"/>
+
+        <!-- 允许给mysql中的字段起别名，以完成entity与mysql字段名称不一致时的映射 -->
+        <setting name="useColumnLabel" value="true"/>
+
+        <!-- 驼峰命名转换mysql.publish_time to entity.publishTime -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+</configuration>

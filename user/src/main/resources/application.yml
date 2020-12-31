@@ -1,0 +1,32 @@
+
+server:
+  port: 9002    #服务端口
+  tomcat:
+    max-threads: 3   #Tomcat最大线程数
+spring:
+  application:
+    name: user    #应用名称，注册eureka时用来标记本服务
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 1123@mysql
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka/,http://localhost:9003/eureka/   #用于服务注册和发现的对外地址
+feign:
+  hystrix:
+    enabled: true
+
+#todo 这段没有生效以后再研究
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
